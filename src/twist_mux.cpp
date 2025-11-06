@@ -82,7 +82,9 @@ void TwistMux::init() {
   getTopicHandles("locks", *lock_hs_);
 
   /// Read use_stamped parameter:
-  this->declare_parameter("use_stamped", false);
+  if (!this->has_parameter("use_stamped")) {
+    this->declare_parameter("use_stamped", false);
+  }
   this->get_parameter("use_stamped", use_stamped_);
 
   /// Publisher for output topic:
